@@ -181,6 +181,38 @@ namespace ADASTRA_Repair
             choiceA.Close();
             choiceB.Close();
             choiceC.Close();
+
+            //*******************************************
+            //existing dbo.ROOM
+            //*******************************************
+            StreamReader room_reader = new StreamReader(".\\dbo.ROOM.csv");
+            string room_line = room_reader.ReadLine(); //header row
+            room_line = room_reader.ReadLine(); //first line of data
+            while (room_line != null)
+            {
+                string[] substrs = room_line.Split(',');
+
+                string building_code = substrs[3].Trim().ToUpper();
+                string room_id = substrs[4].Trim().ToUpper();
+
+                room_line = room_reader.ReadLine();
+            }
+
+            //*******************************************
+            //existing dbo.BUILDING
+            //*******************************************
+            StreamReader building_reader = new StreamReader(".\\dbo.BUILDING.csv");
+            string building_line = building_reader.ReadLine(); //header row
+            building_line = building_reader.ReadLine(); //first line of data
+            while (building_line != null)
+            {
+                string[] substrs = building_line.Split(',');
+
+                string building_code = substrs[3].Trim().ToUpper();
+
+                building_line = building_reader.ReadLine();
+            }
+
         }
     }
 }
